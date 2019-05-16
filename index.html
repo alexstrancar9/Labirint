@@ -1,0 +1,130 @@
+<!DOCTYPE html">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="sl" lang="sl">
+<head>		
+	<title>The Pirate Maze</title>
+
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="copyright" content="" />
+	<meta name="author" content="" />
+	<meta name="rating" content="general" />
+	<meta name="expires" content="Never" />
+	<meta name="revisit-after" content="30 Days" />
+
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	
+	<link rel="stylesheet" href="css/mojcss.css" type="text/css" media="all" />		
+
+</head>
+<body>
+	
+	<div id="naslov">
+		The Pirate Maze
+	</div>
+		<br/>	
+	<div id="gumbi">
+		<button type="button" id="start" onclick="start()">START</button>
+			<br/>
+			<br/>
+		<button type="button" id="reset" onClick="window.location.reload()">RESET</button>
+	</div>
+	
+	<div id="cannon">		
+	</div>
+
+	<div id="glavni">
+	
+		
+			<canvas id="canvas" width="482" height="482">
+			</canvas>
+		
+			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+			<script>
+		
+			var tabx=[225,225,241,241,257,257,241,241,257,257,273,273,193,193,177,177,193,193,209,209,193,193,161,161,177,177,225,225,241,241,257,257,273,273,321,321,337,337,369,369,401,401,417,417,433,433,417,417,433,433,385,385,417,417,449,449,465,465,401,401,433,433,385,385,369,369,337,337,353,353,257,257,241,241];
+		
+			var taby=[2,34,34,2,2,50,50,82,82,66,66,98,98,114,114,146,146,162,162,242,242,210,210,242,242,258,258,194,194,210,210,226,226,258,258,242,242,226,226,210,210,242,242,258,258,306,306,322,322,370,370,402,402,386,386,402,402,418,418,434,434,466,466,450,450,466,466,450,450,434,434,450,450,466];
+		
+		swal("Welcome!", "Press START to begin solving the maze, or RESET to reset it. Enjoy!");
+		var myVar;
+		function start() { 
+		myVar= setInterval(drawIt,10); 
+		document.getElementById("start").disabled = true; 
+		}
+			
+			
+			var x = 225;
+			var y = 0;
+			var i=0;
+			var xnas=tabx[i];
+			var ynas=taby[i];
+			var xp=xnas-x;
+			var yp=ynas-y;
+			
+			
+			const img = new Image();
+            img.src='slike/ball.png';
+			
+		
+			function drawIt(){
+			xnas=tabx[i];
+			ynas=taby[i];
+			xp=xnas-x;
+			yp=ynas-y;
+			
+			
+			
+		
+			var canvas = document.getElementById('canvas');
+			var c = canvas.getContext('2d');
+			c.clearRect(0,0,canvas.width,canvas.height);
+			c.fillStyle = "green";
+			c.drawImage(img,x,y);
+		
+			if(x!=xnas||y!=ynas){
+			if(xp>0){x+=1;}
+			else if(xp==0){}
+			else{x-=1;}
+			if(yp>0){y+=1;}
+			else if(yp==0){}
+			else{y-=1;}
+			}
+			else{i+=1;}
+			
+			
+			if(x==241 && y==466){
+				clearInterval(myVar); 
+				swal("Congratulations!", "The ship has been hit!");
+				}
+			
+			}
+			
+			
+			
+			(function(){
+            setInterval("document.body.style.zoom=1/window.devicePixelRatio",1);
+            var viewport=document.createElement("meta");
+            viewport.id="viewport";viewport.name="viewport";
+            viewport.content="width=device-width, initial-scale=1";
+            document.body.parentElement.children[0].appendChild(viewport);})()
+
+
+				
+				
+			</script>
+		
+		
+		
+		
+		
+		
+		
+	</div>
+	
+	<div id="ship">
+	</div>
+
+	
+</body>
+</html>
